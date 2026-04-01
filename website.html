@@ -1,0 +1,604 @@
+ 
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="AI автоматизация за социални мрежи и WordPress: постове, видеа и блогове с минимално участие от ваша страна. SEO, видимост и повече продажби." />
+  <title>AI Автоматизация за Социални Мрежи и WordPress — Постове, Видеа, Блог</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,600,700&family=Manrope:wght@300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Aesthetic: Editorial / Swiss with warm tech accents */
+      --bg: #0b0f14;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.52);
+
+      --brand: #c7ff6b; /* acid-lime */
+      --brand2: #7dd3ff; /* soft-cyan */
+      --accent: #ff6bd6; /* magenta */
+      --warn: #ffd36b;
+
+      --stroke: rgba(255,255,255,.12);
+      --stroke2: rgba(199,255,107,.22);
+
+      --shadow: 0 30px 80px rgba(0,0,0,.45);
+      --shadow2: 0 12px 30px rgba(0,0,0,.35);
+
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1180px;
+
+      --h1: clamp(2.2rem, 4.1vw, 4.2rem);
+      --h2: clamp(1.6rem, 2.5vw, 2.4rem);
+      --h3: clamp(1.1rem, 1.4vw, 1.3rem);
+      --p: clamp(1.0rem, 1.05vw, 1.08rem);
+      --small: .95rem;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 10% -10%, rgba(125,211,255,.18), transparent 60%),
+                  radial-gradient(900px 650px at 95% 10%, rgba(255,107,214,.14), transparent 55%),
+                  radial-gradient(1000px 700px at 40% 110%, rgba(199,255,107,.12), transparent 60%),
+                  linear-gradient(180deg, #070a0f 0%, #0b0f14 55%, #070a0f 100%);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin-inline:auto; padding: clamp(18px, 3vw, 34px);}
+    .grid{display:grid; gap: clamp(14px, 2vw, 22px);}
+
+    /* Top nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: linear-gradient(180deg, rgba(11,15,20,.86) 0%, rgba(11,15,20,.60) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 14px;
+    }
+    .brandmark{
+      display:flex; align-items:baseline; gap:10px;
+      letter-spacing: .02em;
+      min-width: 220px;
+    }
+    .logo{
+      width: 14px; height: 14px; border-radius: 4px;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand2) 60%, var(--accent) 100%);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 12px 26px rgba(0,0,0,.35);
+      transform: translateY(-1px);
+    }
+    .brandmark strong{
+      font-family: Fraunces, serif;
+      font-weight: 650;
+      font-size: 1.08rem;
+    }
+    .brandmark span{
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 500;
+    }
+
+    nav ul{
+      list-style:none; padding:0; margin:0;
+      display:flex; gap: clamp(10px, 1.7vw, 18px);
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 600;
+      padding: 10px 10px;
+      border-radius: 12px;
+      transition: transform .15s ease, background .15s ease, color .15s ease;
+    }
+    nav a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      letter-spacing: .01em;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      box-shadow: var(--shadow2);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn:active{transform: translateY(0px) scale(.99)}
+    .btn.primary{
+      border-color: rgba(199,255,107,.35);
+      background: linear-gradient(135deg, rgba(199,255,107,.22), rgba(125,211,255,.12));
+      box-shadow: 0 18px 44px rgba(0,0,0,.35);
+    }
+    .btn.primary:hover{
+      border-color: rgba(199,255,107,.55);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: .92rem;
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 99px;
+      background: var(--brand);
+      box-shadow: 0 0 0 4px rgba(199,255,107,.12);
+    }
+
+    /* Hero */
+    .hero{
+      padding-top: clamp(18px, 3.2vw, 36px);
+      padding-bottom: clamp(34px, 5vw, 70px);
+    }
+    .hero-grid{
+      grid-template-columns: 1.1fr .9fr;
+      align-items:stretch;
+    }
+    .hero h1{
+      font-family: Fraunces, serif;
+      font-weight: 650;
+      font-size: var(--h1);
+      line-height: 1.02;
+      margin: 14px 0 14px;
+      letter-spacing: -0.02em;
+    }
+    .lead{
+      font-size: var(--p);
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 60ch;
+      margin: 0 0 18px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top: 16px;
+    }
+
+    .trustline{
+      display:flex; gap: 14px; flex-wrap:wrap; align-items:center;
+      margin-top: 22px;
+      color: var(--faint);
+      font-size: .95rem;
+    }
+    .trustline b{color: rgba(255,255,255,.78); font-weight: 800}
+
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 300px at 20% 0%, rgba(199,255,107,.16), transparent 60%),
+                  radial-gradient(500px 380px at 90% 20%, rgba(125,211,255,.14), transparent 55%),
+                  radial-gradient(420px 420px at 60% 110%, rgba(255,107,214,.10), transparent 60%);
+      pointer-events:none;
+      filter: saturate(1.1);
+    }
+    .panel-inner{position:relative; padding: clamp(16px, 2.6vw, 26px);}
+
+    /* "Automation map" visual */
+    .map{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .map-top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 12px;
+    }
+    .map-title{
+      display:flex; flex-direction:column; gap: 6px;
+    }
+    .map-title h3{
+      margin:0;
+      font-size: var(--h3);
+      letter-spacing: .01em;
+      color: rgba(255,255,255,.90);
+    }
+    .map-title p{margin:0; color: var(--muted); font-size: .95rem; line-height:1.5}
+
+    .map-rail{
+      border-top: 1px dashed rgba(255,255,255,.18);
+      margin-top: 10px;
+      padding-top: 16px;
+      display:grid;
+      gap: 12px;
+    }
+    .node{
+      display:grid;
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .node:hover{
+      transform: translateY(-1px);
+      border-color: rgba(199,255,107,.25);
+      background: rgba(0,0,0,.22);
+    }
+    .icon{
+      width: 40px; height: 40px; border-radius: 14px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(199,255,107,.20), rgba(125,211,255,.10));
+      border: 1px solid rgba(199,255,107,.18);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    }
+    .node b{display:block; font-weight: 850; color: rgba(255,255,255,.90)}
+    .node span{display:block; color: var(--muted); font-size: .92rem; margin-top: 3px}
+
+    /* Sections */
+    section{padding: clamp(30px, 5vw, 70px) 0}
+    .section-head{
+      display:flex; justify-content:space-between; align-items:flex-end; gap: 18px;
+      margin-bottom: clamp(16px, 3vw, 22px);
+    }
+    .section-head h2{
+      font-family: Fraunces, serif;
+      font-size: var(--h2);
+      margin:0;
+      letter-spacing:-.01em;
+      line-height:1.08;
+    }
+    .section-head p{margin:0; color: var(--muted); max-width: 70ch; line-height:1.6}
+
+    .bento{
+      grid-template-columns: 1.2fr .8fr;
+      align-items:stretch;
+    }
+    .bento .panel{border-radius: var(--radius2)}
+    .feature-list{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .feature{
+      padding: 14px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .feature h3{
+      margin:0 0 6px;
+      font-size: 1.02rem;
+      letter-spacing:.01em;
+    }
+    .feature p{margin:0; color: var(--muted); line-height:1.6; font-size: .96rem}
+
+    /* Process timeline (no cards, single column rhythm) */
+    .timeline{
+      margin-top: 18px;
+      border-top: 1px solid var(--stroke);
+    }
+    .step{
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .step .k{
+      color: rgba(255,255,255,.86);
+      font-weight: 900;
+      letter-spacing:.02em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+    .step h3{
+      margin:0 0 6px;
+      font-size: 1.08rem;
+      letter-spacing:.01em;
+    }
+    .step p{margin:0; color: var(--muted); line-height:1.65; font-size: .98rem}
+
+    /* Pricing */
+    .pricing{
+      grid-template-columns: 1fr 1fr;
+      align-items:stretch;
+    }
+    .price{
+      display:flex; flex-direction:column; gap: 12px;
+    }
+    .price .big{
+      font-family: Fraunces, serif;
+      font-size: clamp(2.0rem, 3.5vw, 3.0rem);
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+    .price .sub{
+      margin:0;
+      color: var(--muted);
+      line-height:1.6;
+    }
+    .price ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height:1.8;
+    }
+    .note{
+      margin-top: 10px;
+      font-size: .95rem;
+      color: var(--faint);
+    }
+
+    /* FAQ */
+    details{
+      border-top: 1px solid var(--stroke);
+      padding: 14px 0;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 850;
+      color: rgba(255,255,255,.90);
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    summary::-webkit-details-marker{display:none}
+    .chev{
+      width: 28px; height: 28px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      display:grid; place-items:center;
+      transition: transform .2s ease;
+      flex: 0 0 auto;
+    }
+    details[open] .chev{transform: rotate(180deg)}
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height:1.7;
+      max-width: 90ch;
+    }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    form{
+      display:grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    label{font-weight: 750; font-size: .92rem; color: rgba(255,255,255,.86)}
+    input, textarea, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline: none;
+      font: inherit;
+    }
+    textarea{min-height: 120px; resize: vertical}
+    input:focus, textarea:focus, select:focus{border-color: rgba(199,255,107,.40); box-shadow: 0 0 0 4px rgba(199,255,107,.10)}
+
+    footer{
+      border-top: 1px solid var(--stroke);
+      padding: 22px 0 34px;
+      color: var(--faint);
+      font-size: .95rem;
+    }
+    .foot{
+      display:flex; gap: 12px; justify-content:space-between; align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .lang{
+      display:flex; gap: 8px; flex-wrap:wrap; align-items:center;
+    }
+    .toggle{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.84);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: .9rem;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .toggle:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
+    .toggle[aria-pressed="true"]{
+      border-color: rgba(199,255,107,.45);
+      background: rgba(199,255,107,.14);
+      color: rgba(255,255,255,.92);
+    }
+
+    /* Reveal motion */
+    .reveal{opacity:0; transform: translateY(10px); filter: blur(2px)}
+    .reveal.in{
+      opacity:1; transform:none; filter:none;
+      transition: opacity .7s ease, transform .7s ease, filter .7s ease;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .reveal{opacity:1; transform:none; filter:none}
+      *{scroll-behavior:auto !important}
+    }
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-grid, .bento, .pricing, .contact{grid-template-columns: 1fr}
+      .step{grid-template-columns: 1fr; gap: 8px}
+      .feature-list{grid-template-columns: 1fr}
+      .brandmark{min-width:auto}
+      nav ul{display:none}
+      .nav{gap:10px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brandmark" href="#top" aria-label="Начало">
+        <span class="logo" aria-hidden="true"></span>
+        <strong>AI Automation</strong>
+        <span data-i18n="brand.tag">за WordPress & Social</span>
+      </a>
+
+      <nav aria-label="Основна навигация">
+        <ul>
+          <li><a href="#services" data-i18n="nav.services">Услуги</a></li>
+          <li><a href="#how" data-i18n="nav.how">Как работи</a></li>
+          <li><a href="#pricing" data-i18n="nav.pricing">Цени</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">Въпроси</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Контакт</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn" href="#pricing" data-i18n="nav.cta.secondary">Виж цени</a>
+        <a class="btn primary" href="#contact" data-i18n="nav.cta.primary">Заяви разговор</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="grid hero-grid">
+          <div class="reveal">
+            <span class="pill">
+              <span class="dot" aria-hidden="true"></span>
+              <span data-i18n="hero.pill">Автоматизирай съдържанието си. Спести време. Публикувай по-умно.</span>
+            </span>
+
+            <h1 data-i18n="hero.h1">
+              AI автоматизация за постове, видеа и блогове — с минимално участие от твоя страна.
+            </h1>
+
+            <p class="lead" data-i18n="hero.lead">
+              Подходящо за малки и средни сайтове, които искат постоянна активност в социалните мрежи и SEO-оптимизирано съдържание в WordPress — за повече видимост и продажби.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#contact" data-i18n="hero.cta1">Получете план за автоматизация</a>
+              <a class="btn" href="#how" data-i18n="hero.cta2">Вижте примерен процес</a>
+            </div>
+
+            <div class="trustline" aria-label="Кратка информация">
+              <span><b data-i18n="hero.trust.a">WordPress.org</b> <span data-i18n="hero.trust.a2">фокус</span></span>
+              <span>•</span>
+              <span><b data-i18n="hero.trust.b">TikTok / IG / FB / X</b> <span data-i18n="hero.trust.b2">и още</span></span>
+              <span>•</span>
+              <span><b data-i18n="hero.trust.c">Drafts или Direct</b> <span data-i18n="hero.trust.c2">публикуване</span></span>
+            </div>
+          </div>
+
+          <aside class="panel reveal" aria-label="Визуализация на автоматизация">
+            <div class="panel-inner map">
+              <div class="map-top">
+                <div class="map-title">
+                  <h3 data-i18n="hero.panel.title">Една папка. Много канали.</h3>
+                  <p data-i18n="hero.panel.desc">Качваш файл веднъж — системата публикува навсякъде по график, с SEO текст и хаштагове.</p>
+                </div>
+                <span class="pill" title="Интеграции">
+                  <span class="dot" aria-hidden="true"></span>
+                  <span data-i18n="hero.panel.pill">Dropbox → Social</span>
+                </span>
+              </div>
+
+              <div class="map-rail" role="list">
+                <div class="node" role="listitem">
+                  <div class="icon" aria-hidden="true">
+                    <!-- inline svg -->
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2l7 4-7 4-7-4 7-4Z" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+                      <path d="M5 10l7 4 7-4" stroke="rgba(255,255,255,.65)" stroke-width="1.5"/>
+                      <path d="M5 14l7 4 7-4" stroke="rgba(255,255,255,.45)" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <b data-i18n="hero.panel.n1.t">Качване</b>
+                    <span data-i18n="hero.panel.n1.d">Видео + снимка в Dropbox</span>
+                  </div>
+                </div>
+
+                <div class="node" role="listitem">
+                  <div class="icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6v6l4 2" stroke="rgba(255,255,255,.85)" stroke-width="1.6" stroke-linecap="round"/>
+                      <path d="M21 12a9 9 0 1 1-3.1-6.7" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+                      <path d="M21 4v5h-5" stroke="rgba(255,255,255,.55)" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <b data-i18n="hero.panel.n2.t">Планиране</b>
+                    <span data-i18n="hero.panel.n2.d">Оптимален час за региона</span>
+                  </div>
+                </div>
+
+                <div class="node" role="listitem">
+                  <div class="icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 7h16" stroke="rgba(255,255,255,.75)" stroke-width="1.5" stroke-linecap="round"/>
+                      <path d="M4 12h10" stroke="rgba(255,255,255,.55)" stroke-width="1.5" stroke-linecap="round"/>
+                      <path d="M4 17h13" stroke="rgba(255,255,255,.45)" stroke-width="1.5" stroke-linecap="round"/>
+                      <path d="M17 10l3 3-6 6H11v-3l6-6Z" stroke="rgba(199,255,107,.85)" stroke-width="1.4" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <
