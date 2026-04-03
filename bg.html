@@ -127,10 +127,11 @@
       gap:10px;
       align-items:center;
       justify-content:center;
+      text-align: center;
+      line-height: 1.3;
       cursor:pointer;
       transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
       user-select:none;
-      white-space:nowrap;
     }
     .btn:hover{
       transform: translateY(-1px);
@@ -337,12 +338,13 @@
     .step p{margin:0; color: var(--muted); line-height:1.65; font-size: .98rem}
 
     .pricing{
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       align-items:stretch;
       margin-top: 30px;
     }
     .price{
       display:flex; flex-direction:column; gap: 12px;
+      height: 100%;
     }
     .price .big{
       font-family: Fraunces, serif;
@@ -361,6 +363,7 @@
       padding-left: 18px;
       color: var(--muted);
       line-height:1.8;
+      flex-grow: 1; /* Pushes the button to the bottom */
     }
 
     /* Requirements List Styling */
@@ -397,11 +400,15 @@
       *{scroll-behavior:auto !important}
     }
 
+    /* Mobile specific CSS fixes */
     @media (max-width: 960px){
-      .hero-grid, .pricing{grid-template-columns: 1fr}
+      .hero-grid{grid-template-columns: 1fr}
       .step{grid-template-columns: 1fr; gap: 8px}
       .brandmark{min-width:auto}
       nav ul{display:none}
+      .nav-cta {display:none} /* Hides extra buttons in top right to prevent clipping */
+      .hero-actions { flex-direction: column; align-items: stretch; } /* Stacks hero buttons */
+      .hero-actions .btn { width: 100%; }
       .nav{gap:10px}
     }
   </style>
@@ -448,6 +455,8 @@
 
             <p class="lead" data-i18n="hero.lead">
               Подходящо за малки и средни сайтове, които искат постоянна активност в социалните мрежи и SEO-оптимизирано съдържание в WordPress — за повече видимост и продажби.
+              <br><br>
+              <em style="color: rgba(255,255,255,0.85);">Автоматизирах изцяло собствените си публикации в социалните мрежи по този начин и реших да споделя знанията си, за да помогна на малките бизнеси да растат.</em>
             </p>
 
             <div class="hero-actions">
@@ -639,12 +648,27 @@
               <p class="big">&euro;199<span style="font-size: 1rem; color: var(--muted)"> / мес</span></p>
               <p class="sub">За растящи марки, които се нуждаят от максимално покритие.</p>
               <ul>
-                <li>30 публикации месечно</li>
+                <li>До 30 публикации месечно</li>
                 <li>Всички социални мрежи (TikTok, IG, FB, X)</li>
                 <li>SEO оптимизация на експертно ниво</li>
                 <li>Приоритетна поддръжка 24/7</li>
               </ul>
               <a class="btn primary" href="#contact" style="margin-top: 15px;">Избери План</a>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-inner price">
+              <h3>Индивидуална настройка</h3>
+              <p class="big">По договаряне<span style="font-size: 1rem; color: var(--muted)">  ЕДНОКРАТНО ЗАПЛАЩАНЕ.</span></p>
+              <p class="sub">За бизнеси, които искат персонализирана система, която притежават изцяло.</p>
+              <ul>
+                <li>Еднократна такса за изграждане</li>
+                <li>Създаване на индивидуален сценарий</li>
+                <li>Поддръжка при нужда (от &euro;50/мес)</li>
+                <li>Пълно предаване на системата</li>
+              </ul>
+              <a class="btn" href="#contact" style="margin-top: 15px;">Вземи Оферта</a>
             </div>
           </div>
         </div>
